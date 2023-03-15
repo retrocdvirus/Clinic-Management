@@ -1,0 +1,317 @@
+after some times of debugging and testing, i finallly have the project right.
+
+i inteneded to deploy the app on microsoft azure because most other cloud computing service always requires the elusive postal code or credit card,
+
+which are difficult to get. furthermore, the tutorials on microsoft is lengthy, redundant, completely off subject and useless
+
+those stupid half-cocked tutorial only show some basic steps and details about virtual machine and nothing more.
+
+i have read your tutorials, but those only tell me how to install tomcat which is only usefull after i upload the project
+
+AND do not include how to upload the app onto the server so i couldn't deploy the app.
+
+
+
+ALL of the request , url, method are in the same order as in their controllers
+
+Patient:
+
+GET: http://localhost:8080/patient
+
+GET: http://localhost:8080/patient/1
+
+GET: http://localhost:8080/patient/name/quang
+
+GET: http://localhost:8080/patient/date/2016/07/18
+
+POST: http://localhost:8080/patient
+
+{
+"name" : "quang","dob":"2016-07-18",
+"gender" : "M",
+"address" : "177 bleeker street"
+}
+
+DELETE: http://localhost:8080/patient
+
+{
+"id" : "1","name" : "quang","dob":"2016-07-18",
+"gender" : "M",
+"address" : "177 bleeker street"
+}
+
+DELETE: http://localhost:8080/patient/1
+
+PUT: http://localhost:8080/patient/1
+
+{
+"name" : "duy quang","dob":"2016-07-18",
+"gender" : "M",
+"address" : "177 bleeker street"
+}
+
+PUT: http://localhost:8080/patient/address/1
+
+wall street
+
+
+
+Visit:
+
+GET: http://localhost:8080/visit
+
+GET: http://localhost:8080/visit/1
+
+GET: http://localhost:8080/visit/patient/1
+
+GET: http://localhost:8080/visit/date/2016/07/18
+
+GET: http://localhost:8080/visit/date/count/2016/07/18
+
+POST: http://localhost:8080/visit
+
+{
+"visitDate":"2018-08-17",
+"visitTime":"23:52:00",
+"patientVisit":
+{
+"name" : "quang",
+"dob":"2016-07-18",
+"gender" : "M",
+"address" : "177 bleeker street"
+},
+"diagnose":{"problems":"cold and spills",
+"doctorDiagnose":
+{
+"name":"freeman"
+},
+"perscriptionDiagnose":{}
+}
+}
+
+DELETE: http://localhost:8080/visit
+
+{
+"id":"1","visitDate":"2018-08-17",
+"visitTime":"23:52:00",
+"patientVisit":
+{"id":"1",
+"name" : "quang",
+"dob":"2016-07-18",
+"gender" : "M",
+"address" : "177 bleeker street"
+},
+"diagnose":{"id":"1","problems":"cold and spills",
+"doctorDiagnose":
+{
+"id":"1","name":"freeman"
+},
+"perscriptionDiagnose":{"id":"1"}
+}
+}
+
+DELETE: http://localhost:8080/visit/1
+
+PUT: http://localhost:8080/visit/1
+
+{
+"id":"1","visitDate":"2018-08-17",
+"visitTime":"23:52:00",
+"patientVisit":
+{"id":"1",
+"name" : "duy quang",
+"dob":"2016-07-18",
+"gender" : "M",
+"address" : "177 bleeker street"
+},
+"diagnose":{"id":"1","problems":"cold and spills",
+"doctorDiagnose":
+{
+"id":"1","name":"freeman"
+},
+"perscriptionDiagnose":{"id":"1"}
+}
+}
+
+PUT: http://localhost:8080/visit/1/1
+
+PUT: http://localhost:8080/visit/patient/1/1
+
+
+
+Diagnose:
+
+GET: http://localhost:8080/diagnose
+
+GET: http://localhost:8080/diagnose/1
+
+GET: http://localhost:8080/diagnose/doc/1
+
+GET: http://localhost:8080/diagnose/ill/1
+
+POST: http://localhost:8080/diagnose
+
+{
+"problems":"cold and spills",
+"doctorDiagnose":
+"name":"freeman"
+},
+"perscriptionDiagnose":{}
+}
+
+DELETE: http://localhost:8080/diagnose
+
+{"id":"1",
+"problems":"cold and spills",
+"doctorDiagnose":
+{"id":"1","name":"freeman"
+},
+"perscriptionDiagnose":{"id":"1"}
+}
+
+DELETE: http://localhost:8080/diagnose/1
+
+PUT: http://localhost:8080/diagnose/1
+
+{"id":"1",
+"problems":"headache and fever",
+"doctorDiagnose":
+{"id":"1","name":"freeman"
+},
+"perscriptionDiagnose":{"id":"1"}
+}
+
+PUT: http://localhost:8080/diagnose/ill/1/1
+
+PUT: http://localhost:8080/diagnose/doc/1/1
+
+PUT: http://localhost:8080/diagnose/perscript/1/1
+
+
+
+Perscription:
+
+GET: http://localhost:8080/perscription
+
+GET: http://localhost:8080/perscription/1
+
+GET: http://localhost:8080/perscription/detail/1
+
+GET: http://localhost:8080/perscription/diagnose/1
+
+POST: http://localhost:8080/perscription
+
+{}
+
+DELETE: http://localhost:8080/perscription
+
+{"id":"1"
+}
+
+DELETE: http://localhost:8080/perscription/1
+
+PUT: http://localhost:8080/perscription/1
+
+{"id":"1"
+}
+
+PUT: http://localhost:8080/perscription/detail/1
+
+[
+{"drugDetail":{
+"id":"2","drugName":"Dexmedetomidin"},"dosage":"200mg","usage":"after each meal",
+"quantity":"10"
+},
+{
+"drugDetail":{
+"id":"3",
+"drugName":"Diazepam"
+	},
+"dosage":"200mg","usage":"after each meal",
+"quantity":"10"
+},
+{
+"drugDetail":{
+"id":"4",
+"drugName":"Etomidat"
+},
+"dosage":"200mg",
+"usage":"after each meal",
+"quantity":"10"
+}
+]
+
+PUT: http://localhost:8080/perscription/detail/1/1
+
+
+
+PerscriptionDetail:
+
+GET: http://localhost:8080/perscriptiondetail
+
+GET: http://localhost:8080/perscriptiondetail/1
+
+GET: http://localhost:8080/perscriptiondetail/perscription/1
+
+POST: http://localhost:8080/perscriptiondetail
+
+{
+"drugDetail":{
+"id":"2",
+"drugName":"Dexmedetomidin"
+},
+"dosage":"200mg",
+"usage":"after each meal",
+"quantity":"10"}
+
+DELETE: http://localhost:8080/perscriptiondetail
+
+{"id":"1","drugDetail":{
+"id":"2",
+"drugName":"Dexmedetomidin"
+},
+"dosage":"200mg",
+"usage":"after each meal",
+"quantity":"10"
+}
+
+DELETE: http://localhost:8080/perscriptiondetail/1
+
+PUT: http://localhost:8080/perscriptiondetail/1
+
+{"id":"1","drugDetail":{
+"id":"2",
+"drugName":"Dexmedetomidin"
+},
+"dosage":"200mg",
+"usage":"after each meal",
+"quantity":"22"
+}
+
+PUT: http://localhost:8080/perscriptiondetail/drug/1/1
+
+PUT: http://localhost:8080/perscriptiondetail/perscription/1/1
+
+
+
+Doctor:
+
+GET: http://localhost:8080/doctor
+
+GET: http://localhost:8080/doctor/1
+
+GET: http://localhost:8080/doctor/name/phil
+
+POST: http://localhost:8080/doctor
+
+{"name":"phil"}
+
+DELETE: http://localhost:8080/perscription
+
+{"id":"1","name":"phil"}
+
+DELETE: http://localhost:8080/perscription/1
+
+PUT: http://localhost:8080/perscription/1
+
+{"id":"1","name":"freeman"}
